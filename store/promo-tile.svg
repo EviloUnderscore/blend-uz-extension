@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="280" viewBox="0 0 440 280">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,400&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="440" height="280" fill="#0a0a0a"/>
+
+  <!-- vertical accent rule -->
+  <rect x="40" y="40" width="2" height="200" fill="#ff5b1f"/>
+
+  <!-- eyebrow mono -->
+  <text x="60" y="62" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="500"
+        letter-spacing="2" fill="#6b6657">[ BLEND·UZ ]</text>
+
+  <!-- big serif italic "Token Helper" -->
+  <text x="60" y="118" font-family="'Fraunces', Georgia, serif" font-style="italic"
+        font-size="48" font-weight="500" fill="#f0e9d6" letter-spacing="-1">Token Helper.</text>
+
+  <!-- subtitle -->
+  <text x="60" y="160" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="500"
+        fill="#b8b09a" letter-spacing="0.5">One-click capture of your Qobuz</text>
+  <text x="60" y="180" font-family="'IBM Plex Mono', monospace" font-size="13" font-weight="500"
+        fill="#b8b09a" letter-spacing="0.5">user_auth_token for BlendUz.</text>
+
+  <!-- bottom rule -->
+  <rect x="60" y="220" width="320" height="1" fill="#2b2825"/>
+
+  <!-- bottom mono mention -->
+  <text x="60" y="240" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="500"
+        letter-spacing="1.5" fill="#6b6657">LOCAL · NO TELEMETRY · OPEN SOURCE</text>
+
+  <!-- right-side accent -->
+  <text x="380" y="240" font-family="'IBM Plex Mono', monospace" font-size="14" font-weight="600"
+        fill="#ff5b1f" text-anchor="end">v0.1.0 →</text>
+</svg>

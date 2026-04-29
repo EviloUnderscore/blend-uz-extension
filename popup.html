@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BlendUz Token Helper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <span class="brand">BLEND·UZ</span>
+    <span class="eyebrow">[ TOKEN HELPER ]</span>
+  </header>
+
+  <main>
+    <!-- Loading -->
+    <section id="loading" class="state">
+      <p class="hint">Loading…</p>
+    </section>
+
+    <!-- Token captured -->
+    <section id="captured" class="state" hidden>
+      <p class="status">
+        <span class="tag ok">CAPTURED</span>
+        <span id="age" class="age"></span>
+      </p>
+      <button id="copy" class="btn-primary">
+        <span>Copy token</span>
+        <span>→</span>
+      </button>
+      <button id="open" class="btn-ghost">Open BlendUz / Accounts</button>
+    </section>
+
+    <!-- Nothing captured -->
+    <section id="empty" class="state" hidden>
+      <p class="status"><span class="tag pending">EMPTY</span></p>
+      <p class="hint">
+        Open <strong>play.qobuz.com</strong> and play any track to generate a request
+        — the token is captured automatically.
+      </p>
+      <button id="open-qobuz" class="btn-ghost">Open play.qobuz.com →</button>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="settings">
+      <label>
+        BlendUz URL
+        <input id="blenduz-url" type="text" placeholder="http://localhost:8090" />
+      </label>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

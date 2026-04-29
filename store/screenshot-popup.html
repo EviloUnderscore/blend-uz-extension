@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1280px; height: 800px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1815 50%, #14120f 100%);
+      font-family: 'IBM Plex Sans', sans-serif;
+      color: #f0e9d6;
+      overflow: hidden;
+    }
+    body {
+      display: flex; align-items: center; justify-content: center;
+      gap: 5rem;
+      padding: 4rem;
+    }
+
+    /* Left side — explanation */
+    .pitch {
+      max-width: 460px;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ff5b1f;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .pitch h1 {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 5rem;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #f0e9d6;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #b8b09a;
+      margin-bottom: 2rem;
+    }
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      display: flex; flex-direction: column;
+      gap: 0.85rem;
+    }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.95rem;
+      color: #f0e9d6;
+    }
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      color: #ff5b1f;
+      font-weight: 600;
+    }
+
+    /* Right side — popup mockup */
+    .popup-frame {
+      position: relative;
+      width: 380px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+    .popup-frame::before {
+      content: '';
+      position: absolute;
+      top: -22px; right: 30px;
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 22px solid #0a0a0a;
+    }
+    .popup {
+      width: 380px;
+      background: #0a0a0a;
+      color: #f0e9d6;
+      font-family: 'IBM Plex Sans', sans-serif;
+      padding: 1.25rem 1.5rem 1.5rem;
+      border: 1px solid #2b2825;
+    }
+    .popup header {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.1rem;
+      border-bottom: 1px solid #2b2825;
+    }
+    .brand {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      color: #ff5b1f;
+    }
+    .popup .small-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b6657;
+      font-weight: 500;
+    }
+    .popup .status {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      color: #b8b09a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.85rem;
+    }
+    .tag {
+      padding: 0.15rem 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      border: 1px solid #b8d465;
+      color: #b8d465;
+    }
+    .age { color: #6b6657; }
+
+    .btn-primary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: #ff5b1f;
+      color: #0a0a0a;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 0;
+      margin-bottom: 0.5rem;
+    }
+    .btn-ghost {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: transparent;
+      color: #f0e9d6;
+      border: 1px solid #6b6657;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .divider {
+      height: 1px;
+      background: #2b2825;
+      margin: 1rem 0;
+    }
+    .url-row {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b6657;
+      margin-bottom: 0.5rem;
+    }
+    .url-input {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      color: #f0e9d6;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #2b2825;
+    }
+  </style>
+</head>
+<body>
+  <section class="pitch">
+    <span class="eyebrow">[ BLEND·UZ TOKEN HELPER ]</span>
+    <h1><em>One click.</em></h1>
+    <p class="lead">
+      Capture your Qobuz <code>user_auth_token</code> directly from
+      <strong>play.qobuz.com</strong> — paste it into BlendUz with a single
+      copy. No DevTools acrobatics.
+    </p>
+    <ol class="steps">
+      <li>Sign in to play.qobuz.com</li>
+      <li>Play any track</li>
+      <li>Click the BlendUz icon</li>
+      <li>Copy → done</li>
+    </ol>
+  </section>
+
+  <section class="popup-frame">
+    <div class="popup">
+      <header>
+        <span class="brand">BLEND·UZ</span>
+        <span class="small-eyebrow">[ TOKEN HELPER ]</span>
+      </header>
+
+      <p class="status">
+        <span class="tag">CAPTURED</span>
+        <span class="age">12s ago</span>
+      </p>
+
+      <button class="btn-primary">
+        <span>Copy token</span>
+        <span>→</span>
+      </button>
+      <button class="btn-ghost">
+        <span>Open BlendUz / Accounts</span>
+        <span>↗</span>
+      </button>
+
+      <div class="divider"></div>
+
+      <div class="url-row">BlendUz URL</div>
+      <div class="url-input">http://localhost:8090</div>
+    </div>
+  </section>
+</body>
+</html>
