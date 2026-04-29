@@ -38,7 +38,7 @@ _Coming soon — link to be published once the listing is approved._
 
 ### Option 2 — Manual (developer mode)
 
-1. Clone this repo or download the latest [release ZIP](./blenduz-extension.zip)
+1. Clone this repo or download the latest [release ZIP](./blend-uz-extension.zip)
 2. Open Chrome → `chrome://extensions`
 3. Toggle **Developer mode** (top-right corner)
 4. Click **Load unpacked** and select the folder containing `manifest.json`
@@ -59,7 +59,7 @@ Cloudflare tunnel or a custom domain).
 ## Repackaging the ZIP
 
 ```sh
-zip -r blenduz-extension.zip \
+zip -r blend-uz-extension.zip \
   manifest.json background.js \
   popup.html popup.css popup.js \
   icon16.png icon48.png icon128.png \

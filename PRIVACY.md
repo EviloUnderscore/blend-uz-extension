@@ -51,7 +51,7 @@ storage. You may also clear it manually by going to
 ## Source code
 
 The extension is open source. You can audit the full source at
-[github.com/EviloUnderscore/blenduz-extension](https://github.com/EviloUnderscore/blenduz-extension).
+[github.com/EviloUnderscore/blend-uz-extension](https://github.com/EviloUnderscore/blend-uz-extension).
 
 ## Contact
 
