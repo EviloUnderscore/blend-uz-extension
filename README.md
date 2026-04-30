@@ -34,7 +34,7 @@ See [PRIVACY.md](./PRIVACY.md) for the full data-handling policy.
 
 ### Option 1 — Chrome Web Store (recommended)
 
-_Coming soon — link to be published once the listing is approved._
+→ **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/blenduz-token-helper/gckgapodmcemipdhkikgflpgnchcjdpn)** (unlisted — link-only, you need this exact URL to find it)
 
 ### Option 2 — Manual (developer mode)
 
