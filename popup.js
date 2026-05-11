@@ -1,8 +1,11 @@
 // BlendUz Token Helper — popup logic.
 
 const STORAGE_TOKEN = 'qobuzToken';
-const STORAGE_URL = 'blenduzUrl';
-const DEFAULT_URL = 'http://localhost:8090';
+// Hard-coded production URL — there is one BlendUz deployment, not
+// many. The URL never changes for end-users; only the maintainer
+// flips it to localhost during local dev (by editing this constant
+// in their working copy).
+const BLENDUZ_URL = 'https://blenduz.evilo.eu';
 
 const $ = (id) => document.getElementById(id);
 
@@ -37,9 +40,8 @@ function showCaptured(token, capturedAt) {
     }
   };
 
-  openBtn.onclick = async () => {
-    const url = await getBlendUzUrl();
-    chrome.tabs.create({ url: `${url.replace(/\/$/, '')}/accounts` });
+  openBtn.onclick = () => {
+    chrome.tabs.create({ url: `${BLENDUZ_URL}/accounts` });
     window.close();
   };
 }
@@ -68,29 +70,10 @@ function formatAge(ms) {
   return `${day}d ago`;
 }
 
-async function getBlendUzUrl() {
-  const data = await chrome.storage.local.get(STORAGE_URL);
-  return data[STORAGE_URL] || DEFAULT_URL;
-}
-
-async function setBlendUzUrl(url) {
-  await chrome.storage.local.set({ [STORAGE_URL]: url });
-}
-
 // === Init ====================================================================
 
 async function init() {
   showLoading();
-
-  // Bind URL input
-  const urlInput = $('blenduz-url');
-  urlInput.value = await getBlendUzUrl();
-  urlInput.addEventListener('change', () => {
-    const v = urlInput.value.trim();
-    setBlendUzUrl(v || DEFAULT_URL);
-  });
-
-  // Read token
   const data = await chrome.storage.local.get(STORAGE_TOKEN);
   const entry = data[STORAGE_TOKEN];
   if (entry && entry.token) {

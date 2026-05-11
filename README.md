@@ -1,8 +1,8 @@
 # BlendUz Token Helper
 
-Chrome extension that captures the Qobuz `user_auth_token` from
-`play.qobuz.com` so linking BlendUz becomes a one-click copy — no DevTools
-acrobatics needed.
+Chrome / Firefox extension that captures the Qobuz `user_auth_token`
+from `play.qobuz.com` so linking BlendUz becomes a one-click copy — no
+DevTools acrobatics needed.
 
 > **What is BlendUz?** A self-hosted playlist generator that combines your
 > Last.fm history and Qobuz favorites to produce playlists Qobuz alone
@@ -32,17 +32,31 @@ See [PRIVACY.md](./PRIVACY.md) for the full data-handling policy.
 
 ## Install
 
-### Option 1 — Chrome Web Store (recommended)
+### Option 1 — Chrome Web Store
 
 → **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/blenduz-token-helper/gckgapodmcemipdhkikgflpgnchcjdpn)** (unlisted — link-only, you need this exact URL to find it)
 
-### Option 2 — Manual (developer mode)
+### Option 2 — Firefox Add-ons (AMO)
 
-1. Clone this repo or download the latest [release ZIP](./blend-uz-extension.zip)
+→ Pending submission to [addons.mozilla.org](https://addons.mozilla.org/). Once published the link will appear here. In the meantime, use the manual install below.
+
+### Option 3 — Manual (developer mode)
+
+#### Chrome
+
+1. Clone this repo and run `./build.sh` (or grab `dist/blenduz-token-helper-chrome-X.Y.Z.zip` from a release)
 2. Open Chrome → `chrome://extensions`
 3. Toggle **Developer mode** (top-right corner)
 4. Click **Load unpacked** and select the folder containing `manifest.json`
 5. Pin the extension (puzzle-piece icon → pin "BlendUz Token Helper")
+
+#### Firefox
+
+1. Run `./build.sh` to produce `dist/blenduz-token-helper-firefox-X.Y.Z.zip`
+2. Open Firefox → `about:debugging#/runtime/this-firefox`
+3. Click **Load Temporary Add-on…** and pick the unzipped `manifest.json` (or for permanent install, see AMO above)
+
+> Cross-browser note: a single `manifest.json` works on both. The `background` block declares both `service_worker` (Chrome MV3) and `scripts` (Firefox MV3); each browser ignores the field it doesn't recognise. The `browser_specific_settings.gecko.id` is required by AMO and ignored by Chrome.
 
 ## Use
 
@@ -56,15 +70,25 @@ The **BlendUz URL** field at the bottom of the popup is editable — change
 it if your BlendUz isn't on `http://localhost:8090` (e.g. behind a
 Cloudflare tunnel or a custom domain).
 
-## Repackaging the ZIP
+## Build
 
 ```sh
-zip -r blend-uz-extension.zip \
-  manifest.json background.js \
-  popup.html popup.css popup.js \
-  icon16.png icon48.png icon128.png \
-  -x "*.DS_Store"
+./build.sh
 ```
+
+Produces:
+- `dist/blenduz-token-helper-chrome-<version>.zip` — Chrome Web Store
+- `dist/blenduz-token-helper-firefox-<version>.zip` — Firefox AMO
+
+The two zips are byte-identical content-wise (single shared codebase); separate artefacts only so each store gets its own upload cycle.
+
+## Publish
+
+Upload each zip on its store's developer console:
+- Chrome — <https://chrome.google.com/webstore/devconsole>
+- Firefox — <https://addons.mozilla.org/developers/>
+
+Mozilla review on simple extensions is usually <24h.
 
 ## License
 
